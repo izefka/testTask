@@ -58,8 +58,9 @@ function showKurs(arr){
     let  kurs=arr.find((a)=>{if(a.dat==dat)return 1; return false;})
     let  st=`Значения валют за ${kurs.dat}:<br>`;
     for (let  key in kurs){
-      if(key!="dat")st+="1 BYN = "+kurs[key]+"  "+key+"<br>"
-      
+      if(key=="dat") continue;
+      if(key=="CNY"||key=="RUB")st+="1 BYN = "+kurs[key]+"  "+key+"<br>";
+      else st+="1 "+key+"=   "+kurs[key]+" BYN "+"<br>"
     }
     document.getElementById("otvet").innerHTML=`<p>${st}</p>`
 }
@@ -68,9 +69,9 @@ function sozd(r,s){
     for(let  i=r; i<=s;i+=24*60*60*1000){
         let  dannie = {
             dat: new Date(i).toISOString().substring(0,10),
-            USD: Math.round(((Math.random() * 0.2*kurs.USD) + 0.9*kurs.USD)*1000)/1000,
+            USD: Math.round(((Math.random() * 0.2*1/kurs.USD) + 0.9*1/kurs.USD)*1000)/1000,
             CNY: Math.round(((Math.random() * 0.2*kurs.CNY) + 0.9*kurs.CNY)*1000)/1000,
-            EUR: Math.round(((Math.random() * 0.2*kurs.EUR) + 0.9*kurs.EUR)*1000)/1000,
+            EUR: Math.round(((Math.random() * 0.2*1/kurs.EUR) + 0.9*1/kurs.EUR)*1000)/1000,
             RUB: Math.round(((Math.random() * 0.2*kurs.RUB) + 0.9*kurs.RUB)*1000)/1000
         };
         arr.push(dannie);
