@@ -56,7 +56,7 @@ document.getElementById("but").addEventListener("click", function () {
 function showKurs(arr){
     let  dat=document.getElementById("data").value;
     let  kurs=arr.find((a)=>{if(a.dat==dat)return 1; return false;})
-    let  st=`Значения валют за ${kurs.dat}:<br>`;
+    let  st=`Курс валют за ${kurs.dat}:<br>`;
     for (let  key in kurs){
       if(key=="dat") continue;
       if(key=="CNY"||key=="RUB")st+="1 BYN = "+kurs[key]+"  "+key+"<br>";
